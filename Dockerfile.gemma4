@@ -1,0 +1,13 @@
+FROM nvidia/cuda:12.6.0-devel-ubuntu22.04 AS builder
+ENV HTTP_PROXY="" HTTPS_PROXY="" NO_PROXY=""
+RUN apt-get update && apt-get install -y git cmake g++ && rm -rf /var/lib/apt/lists/*
+RUN git clone --depth 1 https://github.com/AtomicBot-ai/atomic-llama-cpp-turboquant.git /app
+WORKDIR /app
+RUN mkdir build && cd build && cmake .. -DGGML_CUDA=ON -DLLAMA_TURBOQUANT=OFF -DGGML_LTO=OFF && cmake --build . --config Release -j$(nproc) --target llama-server
+
+FROM nvidia/cuda:12.6.0-runtime-ubuntu22.04
+ENV HTTP_PROXY="" HTTPS_PROXY="" NO_PROXY=""
+RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /app/build/bin/llama-server /llama-server
+EXPOSE 8080
+CMD ["/llama-server"]
