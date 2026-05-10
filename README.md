@@ -30,9 +30,8 @@ docker run --gpus all -v ./models:/models -p 8080:8080 \
 - VRAM занято: ~7.3 ГБ
 Образ: `docker pull ghcr.io/mrbenbern/llama-cpp-mtp-qwen:latest`
 
-[Docker-образ на GHCR](https://github.com/mrBenBern?tab=packages)
+[Docker-образ на GHCR](https://github.com/mrBenBern/llama-cpp-mtp-qwen3.5/pkgs/container/llama-cpp-mtp-qwen)
 
-[Репозиторий на GitHub](https://github.com/mrBenBern/llama-cpp-mtp-qwen3.5)
 
 ## Сборка из исходников
 
