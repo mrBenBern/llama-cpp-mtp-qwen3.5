@@ -24,10 +24,6 @@ docker run --gpus all -v ./models:/models -p 8080:8080 \
 ## Результаты на RTX 3060 12GB
 
 - Модель: Qwen 3.5 9B SOMPOA Heresy MTP (Q4_K_M, ~5.4 ГБ)
-- Контекст: 98k токенов
-- Скорость: 65+ t/s
-- MTP acceptance rate: 70%+
-- VRAM занято: ~7.3 ГБ
 Образ: `docker pull ghcr.io/mrbenbern/llama-cpp-mtp-qwen:latest`
 
 [Docker-образ на GHCR](https://github.com/mrBenBern/llama-cpp-mtp-qwen3.5/pkgs/container/llama-cpp-mtp-qwen)
